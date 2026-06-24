@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GIS GUNUNG SAHARI 150kV</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Orbitron',sans-serif;
+}
+
+body{
+background:#050816;
+color:white;
+overflow-x:hidden;
+}
+
+/* MATRIX BACKGROUND */
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* HEADER */
+
+header{
+height:70px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+font-weight:bold;
+letter-spacing:2px;
+border-bottom:1px solid rgba(255,255,255,.2);
+}
+
+/* SIDEBAR */
+
+.sidebar{
+position:fixed;
+left:0;
+top:70px;
+width:250px;
+height:100%;
+background:rgba(0,0,0,.4);
+backdrop-filter:blur(20px);
+padding:20px;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar li{
+margin:15px 0;
+}
+
+.sidebar a{
+color:white;
+text-decoration:none;
+font-size:15px;
+transition:.3s;
+}
+
+.sidebar a:hover{
+color:#00ff99;
+padding-left:10px;
+}
+
+/* CONTENT */
+
+.content{
+margin-left:260px;
+padding:20px;
+}
+
+.card{
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+border-radius:20px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 0 20px rgba(0,255,255,.2);
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* CLOCK */
+
+.clock{
+font-size:50px;
+text-align:center;
+color:#00ffcc;
+}
+
+/* CALENDAR */
+
+.calendar{
+width:100%;
+height:500px;
+border:none;
+border-radius:15px;
+}
+
+/* CONTACT */
+
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+
+.contact-btn{
+display:block;
+padding:15px;
+text-align:center;
+background:linear-gradient(45deg,#00ffcc,#00aaff);
+color:white;
+text-decoration:none;
+border-radius:15px;
+transition:.3s;
+}
+
+.contact-btn:hover{
+transform:translateY(-5px);
+}
+
+/* QUICK LINKS */
+
+.links{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+
+.link-btn{
+padding:15px;
+display:block;
+text-align:center;
+text-decoration:none;
+background:linear-gradient(45deg,#7f00ff,#00d4ff);
+border-radius:15px;
+color:white;
+transition:.3s;
+}
+
+.link-btn:hover{
+transform:scale(1.05);
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:20px;
+margin-top:30px;
+background:rgba(255,255,255,.05);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+top:0;
+}
+
+.content{
+margin-left:0;
+}
+
+.clock{
+font-size:35px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header>
+GIS GUNUNG SAHARI 150kV
+</header>
+
+<div class="sidebar">
+
+<ul>
+<li><a href="#">🏠 Home</a></li>
+<li><a href="#dashboard">📊 Dashboard</a></li>
+<li><a href="#calendar">📅 Kalender</a></li>
+<li><a href="#agenda">📝 Agenda</a></li>
+<li><a href="#kontak">📞 Kontak</a></li>
+<li><a href="#links">🔗 Quick Links</a></li>
+</ul>
+
+</div>
+
+<div class="content">
+
+<div class="card" id="dashboard">
+<h2>Dashboard Utama</h2>
+<br>
+<div class="clock" id="clock"></div>
+</div>
+
+<div class="card" id="calendar">
+<h2>Kalender</h2>
+<br>
+
+<iframe
+class="calendar"
+src="https://calendar.google.com/calendar/embed?src=id.indonesian%23holiday%40group.v.calendar.google.com">
+</iframe>
+
+</div>
+
+<div class="card" id="agenda">
+<h2>Agenda Kegiatan</h2>
+
+<br>
+
+<ul>
+<li>✔ Briefing Pagi</li>
+<li>✔ Monitoring Peralatan GIS</li>
+<li>✔ Pemeriksaan Logsheet</li>
+<li>✔ Koordinasi Operasi</li>
+<li>✔ Pemeliharaan Berkala</li>
+</ul>
+
+</div>
+
+<div class="card" id="kontak">
+
+<h2>Kontak Penting</h2>
+
+<br>
+
+<div class="contact-grid">
+
+<a class="contact-btn"
+href="https://wa.me/62816844801">
+20kV
+</a>
+
+<a class="contact-btn"
+href="https://wa.me/6281389500637">
+150kV
+</a>
+
+<a class="contact-btn"
+href="https://wa.me/6289652296592?text=Assalamualaikum,%20Permisi%20Cang">
+Cang Aji
+</a>
+
+<a class="contact-btn"
+href="https://wa.me/6287787301417?text=Assalamualaikum,%20Permisi%20Cang">
+Cang Syarif
+</a>
+
+<a class="contact-btn"
+href="https://wa.me/6287832215914?text=Assalamualaikum,%20Permisi%20Cang">
+Cang Suwarto
+</a>
+
+<a class="contact-btn"
+href="https://wa.me/6285717733041?text=Assalamualaikum,%20Permisi%20Cang">
+Cang Ikhsan
+</a>
+
+</div>
+
+</div>
+
+<div class="card" id="links">
+
+<h2>Quick Links</h2>
+
+<br>
+
+<div class="links">
+
+<a class="link-btn"
+target="_blank"
+href="http://10.3.187.6/apdjakarta/login">
+Portal PLN
+</a>
+
+<a class="link-btn"
+target="_blank"
+href="https://super-i-app.plnes.co.id/login">
+Super-I App
+</a>
+
+<a class="link-btn"
+target="_blank"
+href="https://docs.google.com/spreadsheets/d/1nWk4b3st2SFbPBniYTHnva9Ujo11pCMlqXkFOXOi_YU/edit">
+Jadwal Kerja OPGI 20kV
+</a>
+
+<a class="link-btn"
+target="_blank"
+href="https://docs.google.com/spreadsheets/d/1piskUPZdFL5z_jAaxTdcYsEz4aEqB9xRZgDkWyB_fcA/edit">
+Log Sheet 1
+</a>
+
+<a class="link-btn"
+target="_blank"
+href="https://docs.google.com/spreadsheets/d/1m86LL-PKwcL3QR0VPYbzDQdTanEJ-dJPAcRjGK67RAs/edit">
+Log Sheet 2
+</a>
+
+<a class="link-btn"
+target="_blank"
+href="https://docs.google.com/spreadsheets/d/1FkLa1sc0zge2yqTYWOepxzLhl8bjQCx1/edit">
+BA
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 GIS GUNUNG SAHARI 150kV
+</footer>
+
+<script>
+
+/* JAM DIGITAL */
+
+function updateClock(){
+
+let now = new Date();
+
+document.getElementById("clock").innerHTML =
+now.toLocaleTimeString('id-ID');
+
+}
+
+setInterval(updateClock,1000);
+
+/* MATRIX EFFECT */
+
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+const chars =
+"01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+const size=14;
+
+const columns=
+canvas.width/size;
+
+const drops=[];
+
+for(let x=0;x<columns;x++)
+drops[x]=1;
+
+function draw(){
+
+ctx.fillStyle=
+"rgba(0,0,0,0.05)";
+
+ctx.fillRect(
+0,0,
+canvas.width,
+canvas.height
+);
+
+ctx.fillStyle="#00ff00";
+ctx.font=size+"px monospace";
+
+for(let i=0;i<drops.length;i++){
+
+const text=
+chars.charAt(
+Math.floor(
+Math.random()*chars.length
+));
+
+ctx.fillText(
+text,
+i*size,
+drops[i]*size
+);
+
+if(
+drops[i]*size>
+canvas.height &&
+Math.random()>0.975
+){
+drops[i]=0;
+}
+
+drops[i]++;
+
+}
+
+}
+
+setInterval(draw,35);
+
+</script>
+
+</body>
+</html>
